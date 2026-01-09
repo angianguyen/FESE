@@ -6,8 +6,8 @@ export const CONTRACTS = {
   collateralNFT: '0xae4857b09B590905A8eFc4AaDa4b169ACe335701'  // Collateral NFT for asset tokenization
 }
 
-// Mock API endpoint - now using Netlify Functions
-export const API_BASE_URL = ''  // Empty = same origin, uses Netlify Functions
+// Mock API endpoint - Use Render backend
+export const API_BASE_URL = process.env.NEXT_PUBLIC_MOCK_API_URL || 'http://localhost:3001'
 
 // API Endpoints
 export const API_ENDPOINTS = {
