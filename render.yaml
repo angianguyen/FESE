@@ -4,9 +4,8 @@ services:
     name: fese-api
     env: node
     region: oregon
-    rootDir: mock-api
-    buildCommand: yarn install
-    startCommand: yarn start
+    buildCommand: cd mock-api && yarn install
+    startCommand: cd mock-api && yarn start
     envVars:
       - key: NODE_ENV
         value: production
