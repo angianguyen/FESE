@@ -1,16 +1,5 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
   "framework": "nextjs",
-  "regions": ["sin1"],
-  "env": {
-    "NEXT_PUBLIC_MOCK_API_URL": "https://fese-5.onrender.com",
-    "NEXT_PUBLIC_STREAM_CREDIT_ADDRESS": "0xD56e705D58F597B448610c17Da11598539917910",
-    "NEXT_PUBLIC_MOCK_VERIFIER_ADDRESS": "0x1E2905cCc01D83DF8074BdBa8a8bf839B69e6fE3",
-    "NEXT_PUBLIC_COLLATERAL_NFT_ADDRESS": "0xae4857b09B590905A8eFc4AaDa4b169ACe335701",
-    "NEXT_PUBLIC_MOCK_USDC_ADDRESS": "0xF2349DF62365B214b5a8BD654D9CD8f47fe26009",
-    "NEXT_PUBLIC_THIRDWEB_CLIENT_ID": "92f14403e88a8dec5c0662056f2d63a2",
-    "THIRDWEB_SECRET_KEY": "u3E5CXfK7bzH14mkA1uUbXwifV5dYd-Gc8o4AAKI3TkeSR281Bx8OZwQMZKCZs_o066c0cqhCZcGO7whyv-6FA",
-    "MONGODB_URI": "mongodb+srv://angianguyen210805:binhan99@zk.vunqv4j.mongodb.net/streamcredit?retryWrites=true&w=majority&appName=ZK"
-  }
+  "buildCommand": "npm run build",
+  "regions": ["sin1"]
 }
