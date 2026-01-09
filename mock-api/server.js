@@ -690,7 +690,7 @@ app.post('/api/zk/generate-proof', async (req, res) => {
     .digest('hex');
 
   const mockProof = {
-    pi_a: [`0x${proofHash.slice(0, 64)}`, `0x${proofHash.slice(32)}0000`],
+    pi_a: [`0x${proofHash.slice(0, 64)}`, `0x${proofHash.slice(32, 64)}0000000000000000`],
     pi_b: [
       [`0x${crypto.randomBytes(32).toString('hex')}`, `0x${crypto.randomBytes(32).toString('hex')}`],
       [`0x${crypto.randomBytes(32).toString('hex')}`, `0x${crypto.randomBytes(32).toString('hex')}`]
