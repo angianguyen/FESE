@@ -165,8 +165,7 @@ export default function CollateralManager() {
         estimatedValue,
         imageCID: ipfsResult.imageCID,
         fileHash,
-        metadataURI: ipfsResult.metadataURI,
-        imageURL: ipfsResult.imageURL
+        metadataURI: ipfsResult.metadataURI
       });
       
       const result = await mintCollateral(
@@ -179,8 +178,7 @@ export default function CollateralManager() {
         ipfsResult.metadataURI,
         selectedFile.name,
         selectedFile.size,
-        selectedFile.type,
-        ipfsResult.imageURL // Pass the Thirdweb gateway URL
+        selectedFile.type
       );
       
       console.log('✅ Mint result:', result);
