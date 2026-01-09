@@ -1,12 +1,15 @@
 services:
   - type: web
-    name: fese-api
+    name: fesee-mock-api
     env: node
-    region: oregon
+    region: singapore
+    plan: free
+    rootDir: mock-api
     buildCommand: npm install
-    startCommand: node server.js
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 3001
+        value: 10000
+
