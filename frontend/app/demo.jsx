@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWeb3 } from '../context/Web3Context';
 import LoanManager from '../components/LoanManager';
+import CollateralManager from '../components/CollateralManager';
 import { 
   ShieldCheck, 
   Wallet, 
@@ -77,6 +78,12 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
                 className="hidden md:flex px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-sm font-medium transition items-center gap-2 shadow-lg shadow-cyan-500/20"
               >
                 <TrendingUp size={14} /> Manage Loans
+              </button>
+              <button 
+                onClick={() => onViewChange('collateral')}
+                className="hidden md:flex px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-sm font-medium transition items-center gap-2 shadow-lg shadow-purple-500/20"
+              >
+                <Layers size={14} /> Collateral NFT
               </button>
               <button 
                 onClick={() => onViewChange('console')}
@@ -1236,7 +1243,7 @@ const ConsoleView = ({ onNavigate, web3 }) => {
 
 // --- MAIN APP CONTAINER ---
 export default function StreamCreditApp() {
-  const [view, setView] = useState('landing'); // 'landing' | 'console' | 'team'
+  const [view, setView] = useState('landing'); // 'landing' | 'console' | 'manage' | 'collateral' | 'team'
   
   // Get Web3 context - must be inside Web3Provider (see layout.js)
   const web3Context = useWeb3();
@@ -1268,6 +1275,23 @@ export default function StreamCreditApp() {
                 <p className="text-slate-400">Manage your loans with reverse interest curve and commitment fees</p>
               </div>
               <LoanManager />
+            </div>
+          </div>
+        )}
+        {view === 'collateral' && (
+          <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+            <div className="container mx-auto px-6 py-12">
+              <div className="mb-8">
+                <button 
+                  onClick={() => setView('landing')}
+                  className="text-slate-400 hover:text-cyan-400 transition flex items-center gap-2 mb-4"
+                >
+                  <ArrowLeft size={16} /> Back to Home
+                </button>
+                <h1 className="text-4xl font-bold text-white mb-2">🏦 Collateral Tokenization</h1>
+                <p className="text-slate-400">Tokenize your assets from images with IPFS storage and file hash verification</p>
+              </div>
+              <CollateralManager />
             </div>
           </div>
         )}

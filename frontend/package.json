@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.0.0",
+    "@thirdweb-dev/storage": "^2.0.15",
     "axios": "^1.6.2",
     "chart.js": "^4.4.0",
     "dotenv": "^17.2.3",
@@ -18,6 +19,7 @@
     "lucide-react": "^0.562.0",
     "mongoose": "^9.1.2",
     "next": "^14.0.4",
+    "nft.storage": "^7.2.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",

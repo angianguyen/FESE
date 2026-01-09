@@ -7,22 +7,12 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
-import { STREAM_CREDIT_ABI } from '../config/abi';
+import { STREAM_CREDIT_ABI, COLLATERAL_NFT_ABI } from '../config/abi';
+import { CONTRACTS } from '../config/constants';
 import { createLoan, updateLoan } from '../hooks/useLoanHistory';
+import { createCollateral, updateCollateral } from '../hooks/useCollateralHistory';
 
-// Contract addresses from deployed-addresses-mock.json (MockVerifier - for testing)
-// For production with real ZK proofs, use deployed-addresses.json with Groth16Verifier
-const CONTRACTS = {
-  // MockVerifier deployment (for demo - always accepts proofs)
-  streamCredit: '0x04e2AfF2287Ba41662778bE0F3C4dD61071C8555',
-  mockUSDC: '0x734CDc0eAC76Fc8EDE45BDFFc2198Ab8da25FFb8',
-  mockVerifier:  '0x8EfE05b24e552Ea27a7641a21633D116343b89AE',
-  
-  // Real Verifier deployment (requires real ZK proofs)
-  // streamCredit: '0x2F90F76F1D3fCD66c92Ab00DCDa1e7C5A61200b9',
-  // mockUSDC: '0x2b1561Ef1C3bE02180A32E7aae6A7566Ed8F27a8',
-  // groth16Verifier: '0xCAecEC1e406B524fDa7C29424AEcD5dB6FBa896b'
-};
+// Contract addresses now imported from config/constants.js
 
 // Sepolia Chain ID
 const SEPOLIA_CHAIN_ID = 11155111;
@@ -46,6 +36,7 @@ export function Web3Provider({ children }) {
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState(null);
   const [streamCreditContract, setStreamCreditContract] = useState(null);
+  const [collateralNFT, setCollateralNFT] = useState(null);
   const [allAccounts, setAllAccounts] = useState([]); // Track all connected accounts
 
   // Check if MetaMask is installed
@@ -80,15 +71,22 @@ export function Web3Provider({ children }) {
     }
   }, []);
 
-  // Initialize contract when signer is available
+  // Initialize contracts when signer is available
   useEffect(() => {
     if (signer) {
-      const contract = new ethers.Contract(
+      const streamContract = new ethers.Contract(
         CONTRACTS.streamCredit,
         STREAM_CREDIT_ABI,
         signer
       );
-      setStreamCreditContract(contract);
+      setStreamCreditContract(streamContract);
+      
+      const collateralContract = new ethers.Contract(
+        CONTRACTS.collateralNFT,
+        COLLATERAL_NFT_ABI,
+        signer
+      );
+      setCollateralNFT(collateralContract);
     }
   }, [signer]);
 
@@ -167,6 +165,7 @@ export function Web3Provider({ children }) {
     setAccount(null);
     setSigner(null);
     setStreamCreditContract(null);
+    setCollateralNFT(null);
     setAllAccounts([]);
     console.log('Wallet disconnected');
   }, []);
@@ -474,6 +473,174 @@ export function Web3Provider({ children }) {
     }
   }, [streamCreditContract, signer, getAccountInfo, account]);
 
+  // Mint collateral NFT and save to MongoDB
+  const mintCollateral = useCallback(async (assetName, assetType, estimatedValue, description, imageIPFSHash, fileHash, metadataURI, originalFilename, fileSize, mimeType, imageURL) => {
+    if (!collateralNFT || !signer || !account) {
+      throw new Error('Contract not initialized or wallet not connected');
+    }
+
+    try {
+      const valueInUSDC = Math.floor(parseFloat(estimatedValue) * 1e6);
+      
+      console.log('Minting collateral NFT...');
+      const tx = await collateralNFT.mintCollateral(
+        account,
+        assetName,
+        assetType,
+        valueInUSDC,
+        description,
+        imageIPFSHash,
+        fileHash,
+        metadataURI
+      );
+      
+      console.log('Mint tx submitted:', tx.hash);
+      const receipt = await tx.wait();
+      console.log('Mint confirmed:', receipt);
+      
+      // Extract tokenId from event
+      const mintEvent = receipt.logs.find(log => {
+        try {
+          const parsed = collateralNFT.interface.parseLog(log);
+          return parsed.name === 'CollateralMinted';
+        } catch {
+          return false;
+        }
+      });
+      
+      let tokenId = 'Unknown';
+      if (mintEvent) {
+        const parsed = collateralNFT.interface.parseLog(mintEvent);
+        tokenId = parsed.args.tokenId.toString();
+      }
+      
+      // Save to MongoDB
+      try {
+        const ASSET_TYPES = [
+          { value: 0, label: 'Bất động sản' },
+          { value: 1, label: 'Xe cộ' },
+          { value: 2, label: 'Máy móc thiết bị' },
+          { value: 3, label: 'Hàng tồn kho' },
+          { value: 4, label: 'Tài sản trí tuệ' },
+          { value: 5, label: 'Chứng khoán' },
+          { value: 6, label: 'Khác' }
+        ];
+        
+        await createCollateral({
+          walletAddress: account,
+          tokenId: tokenId,
+          contractAddress: CONTRACTS.collateralNFT,
+          assetName,
+          assetType: assetType,
+          assetTypeLabel: ASSET_TYPES[assetType]?.label || 'Unknown',
+          estimatedValue: valueInUSDC,
+          description,
+          imageIPFSHash,
+          imageURL: imageURL || `https://${imageIPFSHash}.ipfs.thirdweb-storage.com/`,
+          metadataURI,
+          fileHash,
+          originalFilename,
+          fileSize,
+          mimeType,
+          mintTxHash: tx.hash
+        });
+        
+        console.log('✅ Collateral saved to database');
+      } catch (dbErr) {
+        console.error('⚠️ Failed to save collateral to database:', dbErr);
+        // Don't throw - NFT already minted
+      }
+      
+      return {
+        success: true,
+        txHash: tx.hash,
+        receipt,
+        tokenId
+      };
+    } catch (err) {
+      console.error('Failed to mint collateral:', err);
+      throw err;
+    }
+  }, [collateralNFT, signer, account]);
+
+  // Lock collateral for loan
+  const lockCollateral = useCallback(async (tokenId, loanAmount) => {
+    if (!streamCreditContract || !signer || !account) {
+      throw new Error('Contract not initialized or wallet not connected');
+    }
+
+    try {
+      console.log('Locking collateral tokenId:', tokenId, 'for loan amount:', loanAmount);
+      
+      const tx = await streamCreditContract.lockCollateral(tokenId, ethers.parseUnits(loanAmount.toString(), 6));
+      console.log('Lock tx submitted:', tx.hash);
+      
+      const receipt = await tx.wait();
+      console.log('Lock confirmed:', receipt);
+      
+      // Update in MongoDB
+      try {
+        await updateCollateral(tokenId, {
+          action: 'lock',
+          contractAddress: CONTRACTS.streamCredit,
+          loanAmount: Math.floor(parseFloat(loanAmount) * 1e6),
+          lockTxHash: tx.hash
+        });
+        
+        console.log('✅ Collateral lock status updated in database');
+      } catch (dbErr) {
+        console.error('⚠️ Failed to update collateral in database:', dbErr);
+      }
+      
+      return {
+        success: true,
+        txHash: tx.hash,
+        receipt
+      };
+    } catch (err) {
+      console.error('Failed to lock collateral:', err);
+      throw err;
+    }
+  }, [streamCreditContract, signer, account]);
+
+  // Unlock collateral after loan repaid
+  const unlockCollateral = useCallback(async (tokenId) => {
+    if (!streamCreditContract || !signer || !account) {
+      throw new Error('Contract not initialized or wallet not connected');
+    }
+
+    try {
+      console.log('Unlocking collateral tokenId:', tokenId);
+      
+      const tx = await streamCreditContract.unlockCollateral(tokenId);
+      console.log('Unlock tx submitted:', tx.hash);
+      
+      const receipt = await tx.wait();
+      console.log('Unlock confirmed:', receipt);
+      
+      // Update in MongoDB
+      try {
+        await updateCollateral(tokenId, {
+          action: 'unlock',
+          unlockTxHash: tx.hash
+        });
+        
+        console.log('✅ Collateral unlock status updated in database');
+      } catch (dbErr) {
+        console.error('⚠️ Failed to update collateral in database:', dbErr);
+      }
+      
+      return {
+        success: true,
+        txHash: tx.hash,
+        receipt
+      };
+    } catch (err) {
+      console.error('Failed to unlock collateral:', err);
+      throw err;
+    }
+  }, [streamCreditContract, signer, account]);
+
   // Pay commitment fee
   const payCommitmentFee = useCallback(async () => {
     if (!streamCreditContract || !signer) {
@@ -585,8 +752,16 @@ export function Web3Provider({ children }) {
     payCommitmentFee,
     getInterestRate,
     
+    // Collateral methods
+    mintCollateral,
+    lockCollateral,
+    unlockCollateral,
+    
     // Contract
     streamCreditContract,
+    collateralNFT,
+    signer,  // Export signer for direct contract interactions
+    provider,  // Export provider for read operations
     
     // Constants
     contracts: CONTRACTS

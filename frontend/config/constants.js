@@ -1,8 +1,9 @@
-// Contract addresses (MockVerifier - FOR TESTING ONLY!)
+// Contract addresses (Collateral NFT System - Sepolia Testnet)
 export const CONTRACTS = {
-  streamCredit: '0xd619f5966320A8AF52598ffab33Df1865A23445A',
-  mockUSDC: '0xE4272b80b135d20D3523735aFB86c0541b3cD9Ec',
-  groth16Verifier: '0xf193788c8819BE7B805EFd0C7AcBda177D85Cb63'  // MockVerifier - always returns true
+  streamCredit: '0xD56e705D58F597B448610c17Da11598539917910',
+  mockUSDC: '0xF2349DF62365B214b5a8BD654D9CD8f47fe26009',
+  groth16Verifier: '0x1E2905cCc01D83DF8074BdBa8a8bf839B69e6fE3',  // MockVerifier - always returns true
+  collateralNFT: '0xae4857b09B590905A8eFc4AaDa4b169ACe335701'  // Collateral NFT for asset tokenization
 }
 
 // Mock API endpoint
