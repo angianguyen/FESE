@@ -65,7 +65,62 @@
     "available": "Available to Borrow",
     "placeholder": {
       "amount": "Enter amount to borrow"
+    },
+    "cooldown": {
+      "active": "Cooldown Period Active",
+      "message": "You must wait 5 days after full loan repayment before borrowing again.",
+      "lastRepayment": "Last Repayment",
+      "canBorrowAgain": "Can Borrow Again"
+    },
+    "borrowFunds": "Borrow Funds",
+    "reverseInterest": "Reverse Interest Curve (Shorter Term = Lower Rate)",
+    "loanTerm": "Loan Term (Days)",
+    "interestRate": "Interest Rate",
+    "activeLoanDetails": "Active Loan Details",
+    "earlyRepayment": "Early Repayment",
+    "earlyBonus": "✓ 2% Bonus!",
+    "noBonus": "✗ No Bonus",
+    "repayLoan": "Repay Loan",
+    "totalToRepay": "Total Amount to Repay",
+    "repayButton": "Repay Full Amount",
+    "amountLabel": "Amount (USDC)",
+    "amountPlaceholder": "Enter amount",
+    "repayCurrentFirst": "⚠️ Please repay your current loan before borrowing again",
+    "maxTermWarning": "⚠️ Maximum loan term is limited to",
+    "days": "days",
+    "loadingHistory": "Loading loan history...",
+    "noHistory": "No loan history yet",
+    "historySubtext": "Your loan transactions will appear here"
+  },
+  "loanHistory": {
+    "title": "Loan History",
+    "date": "Date",
+    "amount": "Amount",
+    "term": "Term",
+    "rate": "Rate",
+    "interestPaid": "Interest Paid",
+    "status": "Status",
+    "tx": "Tx",
+    "view": "View",
+    "noLoans": "No loans yet",
+    "statuses": {
+      "active": "Active",
+      "partial": "Partial",
+      "repaid": "Repaid",
+      "defaulted": "Defaulted"
     }
+  },
+  "stats": {
+    "totalLoans": "Total Loans",
+    "activeLoans": "Active Loans",
+    "totalBorrowed": "Total Borrowed",
+    "totalRepaid": "Total Repaid",
+    "totalCollateral": "Total Collateral Value",
+    "avgCreditScore": "Avg Credit Score",
+    "defaultRate": "Default Rate",
+    "earlyRepayments": "Early Repayments",
+    "bonusSaved": "bonus saved",
+    "avgInterest": "Avg Interest"
   },
   "collateral": {
     "title": "Collateral NFT Management",

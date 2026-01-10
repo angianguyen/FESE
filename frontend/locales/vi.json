@@ -65,7 +65,62 @@
     "available": "Có thể Vay",
     "placeholder": {
       "amount": "Nhập số tiền muốn vay"
+    },
+    "cooldown": {
+      "active": "Thời gian Chờ Đang hoạt động",
+      "message": "Bạn phải chờ 5 ngày sau khi trả hết nợ trước khi vay lại.",
+      "lastRepayment": "Lần Trả nợ Cuối",
+      "canBorrowAgain": "Có thể Vay lại"
+    },
+    "borrowFunds": "Vay Tiền",
+    "reverseInterest": "Lãi suất Nghịch (Kỳ hạn Ngắn = Lãi Thấp hơn)",
+    "loanTerm": "Kỳ hạn Vay (Ngày)",
+    "interestRate": "Lãi suất",
+    "activeLoanDetails": "Chi tiết Khoản vay Đang hoạt động",
+    "earlyRepayment": "Trả nợ Sớm",
+    "earlyBonus": "✓ Thưởng 2%!",
+    "noBonus": "✗ Không có Thưởng",
+    "repayLoan": "Trả nợ Vay",
+    "totalToRepay": "Tổng Số tiền Phải trả",
+    "repayButton": "Trả đầy đủ",
+    "amountLabel": "Số tiền (USDC)",
+    "amountPlaceholder": "Nhập số tiền",
+    "repayCurrentFirst": "⚠️ Vui lòng trả hết khoản vay hiện tại trước khi vay lại",
+    "maxTermWarning": "⚠️ Kỳ hạn vay tối đa bị giới hạn ở",
+    "days": "ngày",
+    "loadingHistory": "Đang tải lịch sử vay...",
+    "noHistory": "Chưa có lịch sử vay",
+    "historySubtext": "Các giao dịch vay của bạn sẽ xuất hiện ở đây"
+  },
+  "loanHistory": {
+    "title": "Lịch sử Vay",
+    "date": "Ngày",
+    "amount": "Số tiền",
+    "term": "Kỳ hạn",
+    "rate": "Lãi suất",
+    "interestPaid": "Lãi đã Trả",
+    "status": "Trạng thái",
+    "tx": "Tx",
+    "view": "Xem",
+    "noLoans": "Chưa có khoản vay",
+    "statuses": {
+      "active": "Đang hoạt động",
+      "partial": "Trả một phần",
+      "repaid": "Đã trả hết",
+      "defaulted": "Vỡ nợ"
     }
+  },
+  "stats": {
+    "totalLoans": "Tổng Khoản vay",
+    "activeLoans": "Khoản vay Đang hoạt động",
+    "totalBorrowed": "Tổng Tiền đã vay",
+    "totalRepaid": "Tổng Tiền đã Trả",
+    "totalCollateral": "Tổng Giá trị Tài sản",
+    "avgCreditScore": "Điểm Tín dụng TB",
+    "defaultRate": "Tỷ lệ Vỡ nợ",
+    "earlyRepayments": "Trả nợ Sớm",
+    "bonusSaved": "tiết kiệm được",
+    "avgInterest": "Lãi TB"
   },
   "collateral": {
     "title": "Quản lý Tài sản Thế chấp NFT",
