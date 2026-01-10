@@ -547,10 +547,8 @@ export function Web3Provider({ children }) {
           estimatedValue: valueInUSDC,
           description,
           imageIPFSHash,
-          imageURL: `https://${imageIPFSHash}.ipfs.nftstorage.link/`,
+          imageURL: `https://${imageIPFSHash}.ipfs.thirdwebstorage.com`,
           metadataURI,
-          fileHash,
-          originalFilename,
           fileSize,
           mimeType,
           mintTxHash: tx.hash
