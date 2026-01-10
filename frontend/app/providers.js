@@ -9,24 +9,13 @@ export function Providers({ children }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Ensure i18n is fully initialized before rendering
-    const initI18n = async () => {
-      if (!i18n.isInitialized) {
-        await i18n.init();
-      }
-      setMounted(true);
-    };
-    
-    initI18n();
+    // Just wait for client-side mount
+    setMounted(true);
   }, []);
 
-  // Don't render until i18n is ready AND client-side mounted
+  // Don't render until client-side mounted (avoid hydration mismatch)
   if (!mounted) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-900">
-        <div className="text-white">Loading...</div>
-      </div>
-    );
+    return null;
   }
 
   return (
