@@ -65,62 +65,7 @@
     "available": "대출 가능 금액",
     "placeholder": {
       "amount": "대출 금액 입력"
-    },
-    "cooldown": {
-      "active": "대기 기간 활성",
-      "message": "대출을 전액 상환한 후 다시 대출하려면 5일을 기다려야 합니다.",
-      "lastRepayment": "마지막 상환",
-      "canBorrowAgain": "다시 대출 가능"
-    },
-    "borrowFunds": "자금 대출",
-    "reverseInterest": "역 이자율 곡선 (단기 = 낮은 이자율)",
-    "loanTerm": "대출 기간 (일)",
-    "interestRate": "이자율",
-    "activeLoanDetails": "활성 대출 세부 정보",
-    "earlyRepayment": "조기 상환",
-    "earlyBonus": "✓ 2% 보너스!",
-    "noBonus": "✗ 보너스 없음",
-    "repayLoan": "대출 상환",
-    "totalToRepay": "상환 총액",
-    "repayButton": "전액 상환",
-    "amountLabel": "금액 (USDC)",
-    "amountPlaceholder": "금액 입력",
-    "repayCurrentFirst": "⚠️ 다시 대출하기 전에 현재 대출을 상환하세요",
-    "maxTermWarning": "⚠️ 최대 대출 기간은 다음으로 제한됩니다",
-    "days": "일",
-    "loadingHistory": "대출 기록 로딩 중...",
-    "noHistory": "아직 대출 기록이 없습니다",
-    "historySubtext": "대출 거래가 여기에 표시됩니다"
-  },
-  "loanHistory": {
-    "title": "대출 기록",
-    "date": "날짜",
-    "amount": "금액",
-    "term": "기간",
-    "rate": "이자율",
-    "interestPaid": "지불된 이자",
-    "status": "상태",
-    "tx": "Tx",
-    "view": "보기",
-    "noLoans": "대출 없음",
-    "statuses": {
-      "active": "활성",
-      "partial": "부분 상환",
-      "repaid": "상환 완료",
-      "defaulted": "채무 불이행"
     }
-  },
-  "stats": {
-    "totalLoans": "총 대출",
-    "activeLoans": "활성 대출",
-    "totalBorrowed": "총 대출액",
-    "totalRepaid": "총 상환액",
-    "totalCollateral": "총 담보 가치",
-    "avgCreditScore": "평균 신용 점수",
-    "defaultRate": "부도율",
-    "earlyRepayments": "조기 상환",
-    "bonusSaved": "보너스 절약",
-    "avgInterest": "평균 이자"
   },
   "collateral": {
     "title": "담보 NFT 관리",

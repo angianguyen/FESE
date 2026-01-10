@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useLanguageChange } from '../lib/withTranslation';
 import { useWeb3 } from '../context/Web3Context';
 import { useLoanHistory, useLoanStats } from '../hooks/useLoanHistory';
 import { 
@@ -21,8 +19,6 @@ import {
 } from 'lucide-react';
 
 export default function LoanManager() {
-  const { t } = useTranslation();
-  const language = useLanguageChange();
   const { account, getAccountInfo, borrow, repay, payCommitmentFee, getInterestRate } = useWeb3();
   const { loans, loading: loansLoading, refetch: refetchLoans } = useLoanHistory(account);
   const { stats, recentLoans, loading: statsLoading, refetch: refetchStats } = useLoanStats(account);
@@ -335,24 +331,24 @@ export default function LoanManager() {
           <div className="glass-panel rounded-xl p-8 mb-8 hover:border-slate-600/30 transition-all duration-300">
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
               <Zap className="w-5 h-5 text-cyan-400" />
-              {t('borrow.activeLoanDetails')}
+              Active Loan Details
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-slate-800/30 rounded-lg p-5 border border-slate-700/30 hover:border-cyan-500/30 transition-all duration-300">
-                <p className="text-slate-500 text-xs uppercase tracking-wide mb-2">{t('borrow.loanTerm')}</p>
+                <p className="text-slate-500 text-xs uppercase tracking-wide mb-2">Loan Term</p>
                 <p className="text-2xl font-bold text-white flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-cyan-400" />
-                  {accountInfo.term} {t('borrow.days')}
+                  {accountInfo.term} days
                 </p>
               </div>
               <div className="bg-slate-800/30 rounded-lg p-5 border border-slate-700/30 hover:border-cyan-500/30 transition-all duration-300">
-                <p className="text-slate-500 text-xs uppercase tracking-wide mb-2">{t('borrow.interestRate')}</p>
+                <p className="text-slate-500 text-xs uppercase tracking-wide mb-2">Interest Rate</p>
                 <p className="text-2xl font-bold text-cyan-400">{accountInfo.interestRate}% APR</p>
               </div>
               <div className="bg-slate-800/30 rounded-lg p-5 border border-slate-700/30 hover:border-emerald-500/30 transition-all duration-300">
-                <p className="text-slate-500 text-xs uppercase tracking-wide mb-2">{t('borrow.earlyRepayment')}</p>
+                <p className="text-slate-500 text-xs uppercase tracking-wide mb-2">Early Repayment</p>
                 <p className={`text-xl font-bold ${accountInfo.isEarlyRepayment ? 'text-emerald-400' : 'text-slate-600'}`}>
-                  {accountInfo.isEarlyRepayment ? t('borrow.earlyBonus') : t('borrow.noBonus')}
+                  {accountInfo.isEarlyRepayment ? '✓ 2% Bonus!' : '✗ No Bonus'}
                 </p>
               </div>
             </div>
@@ -391,7 +387,7 @@ export default function LoanManager() {
                           : 'N/A'}
                       </p>
                       <p className="text-xs text-yellow-400 mt-3">
-                        {t('borrow.maxTermWarning')} {accountInfo.daysUntilExpiration} {t('borrow.days')}
+                        ⚠️ Maximum loan term is limited to {accountInfo.daysUntilExpiration} days
                       </p>
                     </div>
                   </div>
@@ -426,12 +422,12 @@ export default function LoanManager() {
                 <div className="flex items-start gap-4">
                   <Clock className="w-6 h-6 text-orange-400 flex-shrink-0 mt-1" />
                   <div className="flex-1">
-                    <h4 className="text-lg font-bold text-orange-400 mb-2">{t('borrow.cooldown.active')}</h4>
+                    <h4 className="text-lg font-bold text-orange-400 mb-2">Cooldown Period Active</h4>
                     <p className="text-slate-300 mb-3">
-                      {t('borrow.cooldown.message')}
+                      You must wait 5 days after full loan repayment before borrowing again.
                     </p>
                     <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                      <p className="text-xs text-slate-500 uppercase tracking-wide mb-1">{t('borrow.cooldown.lastRepayment')}:</p>
+                      <p className="text-xs text-slate-500 uppercase tracking-wide mb-1">Last Repayment:</p>
                       <p className="text-white font-mono">
                         {lastRepaidLoan?.repaymentDate 
                           ? new Date(lastRepaidLoan.repaymentDate).toLocaleString()
@@ -439,7 +435,7 @@ export default function LoanManager() {
                             ? new Date(accountInfo.lastFullRepayment * 1000).toLocaleString()
                             : 'No repayment history'}
                       </p>
-                      <p className="text-xs text-slate-500 uppercase tracking-wide mt-3 mb-1">{t('borrow.cooldown.canBorrowAgain')}:</p>
+                      <p className="text-xs text-slate-500 uppercase tracking-wide mt-3 mb-1">Can Borrow Again:</p>
                       <p className="text-cyan-400 font-mono font-bold">
                         {accountInfo.lastFullRepayment > 0 
                           ? new Date((accountInfo.lastFullRepayment + 5 * 24 * 60 * 60) * 1000).toLocaleString()
@@ -455,12 +451,12 @@ export default function LoanManager() {
             <div className="glass-panel rounded-xl p-8 hover:border-slate-600/30 transition-all duration-300">
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
               <DollarSign className="w-5 h-5 text-cyan-400" />
-              {t('borrow.borrowFunds')}
+              Borrow Funds
             </h3>
             
             {/* Interest Rate Tiers */}
             <div className="mb-6">
-              <p className="text-xs text-slate-500 mb-4 font-medium uppercase tracking-wide">{t('borrow.reverseInterest')}:</p>
+              <p className="text-xs text-slate-500 mb-4 font-medium uppercase tracking-wide">Reverse Interest Curve (shorter term = lower rate):</p>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                 {interestTiers.map((tier) => (
                   <button
@@ -486,7 +482,7 @@ export default function LoanManager() {
             <form onSubmit={handleBorrow} className="space-y-6">
               <div>
                 <label className="block text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">
-                  {t('borrow.amountLabel')}
+                  Amount (USDC)
                 </label>
                 <input
                   type="number"
@@ -494,19 +490,19 @@ export default function LoanManager() {
                   value={borrowAmount}
                   onChange={(e) => setBorrowAmount(e.target.value)}
                   className="w-full px-4 py-3 bg-slate-800/30 border border-slate-700/50 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  placeholder={t('borrow.amountPlaceholder')}
+                  placeholder="Enter amount"
                   disabled={loading || parseFloat(accountInfo?.borrowed || 0) > 0 || !accountInfo?.canBorrow}
                 />
                 {parseFloat(accountInfo?.borrowed || 0) > 0 && (
                   <p className="text-xs text-yellow-400 mt-2">
-                    {t('borrow.repayCurrentFirst')}
+                    ⚠️ Please repay your current loan before borrowing again
                   </p>
                 )}
               </div>
 
               <div>
                 <label className="block text-xs font-medium text-slate-500 mb-2 uppercase tracking-wide">
-                  {t('borrow.loanTerm')}
+                  Loan Term (days)
                 </label>
                 <input
                 type="number"
@@ -562,10 +558,10 @@ export default function LoanManager() {
         <div className="glass-panel rounded-xl p-8 hover:border-slate-600/30 transition-all duration-300">
           <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
             <TrendingDown className="w-5 h-5 text-emerald-400" />
-            {t('borrow.repayLoan')}
+            Repay Loan
           </h3>
           <p className="text-slate-500 mb-6 text-sm">
-            {t('borrow.totalToRepay')}: <span className="font-bold text-2xl text-emerald-400 block mt-2">${totalDebt.toFixed(2)} USDC</span>
+            Total Amount to Repay: <span className="font-bold text-2xl text-emerald-400 block mt-2">${totalDebt.toFixed(2)} USDC</span>
           </p>
           <button
             onClick={handleRepay}
@@ -674,34 +670,34 @@ export default function LoanManager() {
         {stats && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div className="glass-panel rounded-xl p-4 hover:border-slate-700/30 transition-all duration-300 cursor-pointer">
-              <p className="text-slate-400 text-sm">{t('stats.totalLoans')}</p>
+              <p className="text-slate-400 text-sm">Total Loans</p>
               <p className="text-2xl font-bold text-white mt-1">{stats.totalLoans}</p>
               <p className="text-xs text-slate-500 mt-1">
-                {t('stats.activeLoans')}: {stats.activeLoans} | {t('stats.repaidLoans')}: {stats.repaidLoans}
+                Active: {stats.activeLoans} | Repaid: {stats.repaidLoans}
               </p>
             </div>
             
             <div className="glass-panel rounded-xl p-4 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer">
-              <p className="text-slate-400 text-sm">{t('stats.totalBorrowed')}</p>
+              <p className="text-slate-400 text-sm">Total Borrowed</p>
               <p className="text-2xl font-bold text-cyan-400 mt-1">${stats.totalBorrowed?.toFixed(2) || '0'}</p>
               <p className="text-xs text-slate-500 mt-1">
-                {t('stats.avgLoanAmount')}: ${stats.avgLoanAmount?.toFixed(2) || '0'}
+                Avg: ${stats.avgLoanAmount?.toFixed(2) || '0'}
               </p>
             </div>
             
             <div className="glass-panel rounded-xl p-4 hover:border-emerald-500/30 transition-all duration-300 cursor-pointer">
-              <p className="text-slate-400 text-sm">{t('stats.totalRepaid')}</p>
+              <p className="text-slate-400 text-sm">Total Repaid</p>
               <p className="text-2xl font-bold text-emerald-400 mt-1">${stats.totalRepaid?.toFixed(2) || '0'}</p>
               <p className="text-xs text-slate-500 mt-1">
-                {t('stats.totalInterestPaid')}: ${stats.totalInterestPaid?.toFixed(2) || '0'}
+                Interest: ${stats.totalInterestPaid?.toFixed(2) || '0'}
               </p>
             </div>
             
             <div className="glass-panel rounded-xl p-4 hover:border-yellow-500/30 transition-all duration-300 cursor-pointer">
-              <p className="text-slate-400 text-sm">{t('stats.earlyRepayments')}</p>
+              <p className="text-slate-400 text-sm">Early Repayments</p>
               <p className="text-2xl font-bold text-yellow-400 mt-1">{stats.earlyRepaymentCount || 0}</p>
               <p className="text-xs text-slate-500 mt-1">
-                {t('stats.bonusSaved')}
+                2% bonus saved
               </p>
             </div>
           </div>
@@ -712,7 +708,7 @@ export default function LoanManager() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-white flex items-center gap-2">
               <History className="w-6 h-6 text-cyan-400" />
-              {t('loanHistory.title')}
+              Loan History
             </h2>
             <button
               onClick={() => {
@@ -729,20 +725,20 @@ export default function LoanManager() {
           {loansLoading ? (
             <div className="text-center py-12">
               <RefreshCw className="w-8 h-8 animate-spin text-cyan-400 mx-auto mb-3" />
-              <p className="text-slate-400">{t('borrow.loadingHistory')}</p>
+              <p className="text-slate-400">Loading loan history...</p>
             </div>
           ) : loans && loans.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-slate-800">
-                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">{t('loanHistory.date')}</th>
-                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">{t('loanHistory.amount')}</th>
-                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">{t('loanHistory.term')}</th>
-                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">{t('loanHistory.rate')}</th>
-                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">{t('loanHistory.interestPaid')}</th>
-                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">{t('loanHistory.status')}</th>
-                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">{t('loanHistory.tx')}</th>
+                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">Date</th>
+                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">Amount</th>
+                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">Term</th>
+                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">Rate</th>
+                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">Interest Paid</th>
+                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">Status</th>
+                    <th className="text-left py-3 px-4 text-slate-400 font-medium text-sm">Tx</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -789,9 +785,9 @@ export default function LoanManager() {
                           loan.status === 'partial' ? 'bg-yellow-500/20 text-yellow-400' :
                           'bg-cyan-500/20 text-cyan-400'
                         }`}>
-                          {loan.status === 'repaid' ? `✓ ${t('loanHistory.statuses.repaid')}` : 
-                           loan.status === 'partial' ? `⚡ ${t('loanHistory.statuses.partial')}` : 
-                           `⏳ ${t('loanHistory.statuses.active')}`}
+                          {loan.status === 'repaid' ? '✓ Repaid' : 
+                           loan.status === 'partial' ? '⚡ Partial' : 
+                           '⏳ Active'}
                         </span>
                       </td>
                       <td className="py-4 px-4">
@@ -801,7 +797,7 @@ export default function LoanManager() {
                           rel="noopener noreferrer"
                           className="text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-1 text-sm"
                         >
-                          {t('loanHistory.view')}
+                          View
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       </td>
@@ -813,8 +809,8 @@ export default function LoanManager() {
           ) : (
             <div className="text-center py-12">
               <History className="w-12 h-12 text-slate-700 mx-auto mb-3" />
-              <p className="text-slate-400">{t('borrow.noHistory')}</p>
-              <p className="text-slate-500 text-sm mt-1">{t('borrow.historySubtext')}</p>
+              <p className="text-slate-400">No loan history yet</p>
+              <p className="text-slate-500 text-sm mt-1">Your loan transactions will appear here</p>
             </div>
           )}
         </div>
