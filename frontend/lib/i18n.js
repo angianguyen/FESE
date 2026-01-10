@@ -45,7 +45,12 @@ i18n
     },
     
     react: {
-      useSuspense: false // Disable suspense for Next.js compatibility
+      useSuspense: false, // Disable suspense for Next.js compatibility
+      bindI18n: 'languageChanged', // Re-render on language change
+      bindI18nStore: 'added removed',
+      transEmptyNodeValue: '',
+      transSupportBasicHtmlNodes: true,
+      transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p']
     },
     
     // Debug mode (set to false in production)

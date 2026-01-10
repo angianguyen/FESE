@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWeb3 } from '../context/Web3Context';
 import { useTranslation } from 'react-i18next';
+import { useLanguageChange } from '../lib/withTranslation';
 import LoanManager from '../components/LoanManager';
 import CollateralManager from '../components/CollateralManager';
 import LanguageSwitcher from '../components/LanguageSwitcher';
@@ -37,6 +38,7 @@ import {
 // --- SHARED COMPONENTS ---
 const Navbar = ({ onViewChange, currentView, web3 }) => {
   const { t } = useTranslation();
+  const language = useLanguageChange(); // Force re-render on language change
   const { account, isConnected, isConnecting, connectWallet, disconnectWallet, switchAccount, isOnSepolia } = web3 || {};
   const [showWalletMenu, setShowWalletMenu] = useState(false);
   
@@ -110,7 +112,7 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 {formatAddress(account)}
                 {!isOnSepolia && (
-                  <span className="ml-1 px-1.5 py-0.5 text-[10px] bg-amber-500/20 text-amber-400 rounded">Wrong Net</span>
+                  <span className="ml-1 px-1.5 py-0.5 text-[10px] bg-amber-500/20 text-amber-400 rounded">{t('wallet.wrongNetwork')}</span>
                 )}
                 <ChevronRight size={14} className={`transition-transform ${showWalletMenu ? 'rotate-90' : ''}`} />
               </button>
@@ -119,7 +121,7 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
               {showWalletMenu && (
                 <div className="absolute right-0 mt-2 w-56 rounded-xl bg-slate-900 border border-slate-700 shadow-xl z-50 overflow-hidden">
                   <div className="p-3 border-b border-slate-700">
-                    <div className="text-xs text-slate-500 mb-1">Connected Wallet</div>
+                    <div className="text-xs text-slate-500 mb-1">{t('wallet.connected')}</div>
                     <div className="text-sm font-mono text-slate-300">{formatAddress(account)}</div>
                   </div>
                   <div className="p-1">
@@ -135,7 +137,7 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
                       className="w-full px-3 py-2 text-left text-sm text-red-400 hover:bg-slate-800 rounded-lg flex items-center gap-2"
                     >
                       <AlertTriangle size={14} />
-                      Disconnect
+                      {t('wallet.disconnect')}
                     </button>
                   </div>
                   <div className="p-2 bg-slate-800/50 border-t border-slate-700">
@@ -158,7 +160,7 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
                 <Wallet size={16} />
               )}
               <span className="hidden sm:inline">
-                {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+                {isConnecting ? t('wallet.connect') + '...' : t('wallet.connect')}
               </span>
             </button>
           )}
@@ -1250,6 +1252,7 @@ const ConsoleView = ({ onNavigate, web3 }) => {
 // --- MAIN APP CONTAINER ---
 export default function StreamCreditApp() {
   const [view, setView] = useState('landing'); // 'landing' | 'console' | 'manage' | 'collateral' | 'team'
+  const language = useLanguageChange(); // Force re-render on language change
   
   // Get Web3 context - must be inside Web3Provider (see layout.js)
   const web3Context = useWeb3();
@@ -1261,7 +1264,7 @@ export default function StreamCreditApp() {
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen" key={language}>
         <Navbar onViewChange={setView} currentView={view} web3={web3Context} />
         
         {/* VIEW SWITCHER */}
