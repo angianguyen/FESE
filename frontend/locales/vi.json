@@ -1,0 +1,146 @@
+{
+  "app": {
+    "title": "FESEE - Nền tảng Cho vay DeFi cho Doanh nghiệp Vừa và Nhỏ",
+    "subtitle": "Cho vay Phi tập trung với Tài sản thế chấp NFT & Phát hiện Gian lận ZK"
+  },
+  "nav": {
+    "overview": "Tổng quan",
+    "creditCheck": "Kiểm tra Tín dụng",
+    "borrowLoan": "Vay Tiền",
+    "collateral": "Quản lý Tài sản",
+    "invoice": "Quản lý Hóa đơn"
+  },
+  "wallet": {
+    "connect": "Kết nối Ví",
+    "disconnect": "Ngắt kết nối",
+    "connected": "Đã kết nối",
+    "switchNetwork": "Chuyển sang Sepolia",
+    "wrongNetwork": "Sai Mạng"
+  },
+  "creditCheck": {
+    "title": "Xác minh Tín dụng ZK",
+    "description": "Tạo bằng chứng zero-knowledge cho dữ liệu doanh thu của bạn",
+    "revenue": "Doanh thu (USDC)",
+    "threshold": "Ngưỡng Benford (%)",
+    "generateProof": "Tạo Bằng chứng",
+    "submitOnChain": "Gửi Lên Blockchain",
+    "generating": "Đang tạo bằng chứng...",
+    "submitting": "Đang gửi...",
+    "success": "Xác minh bằng chứng thành công!",
+    "error": "Xác minh thất bại",
+    "placeholder": {
+      "revenue": "Nhập tổng doanh thu",
+      "threshold": "Nhập ngưỡng (0-100)"
+    }
+  },
+  "borrow": {
+    "title": "Vay USDC",
+    "description": "Vay tiền dựa trên điểm tín dụng đã xác minh",
+    "amount": "Số tiền vay (USDC)",
+    "submitBorrow": "Gửi Yêu cầu Vay",
+    "borrowing": "Đang xử lý...",
+    "success": "Giải ngân khoản vay thành công!",
+    "error": "Vay thất bại",
+    "creditScore": "Điểm Tín dụng của bạn",
+    "available": "Có thể Vay",
+    "placeholder": {
+      "amount": "Nhập số tiền muốn vay"
+    }
+  },
+  "collateral": {
+    "title": "Quản lý Tài sản Thế chấp NFT",
+    "description": "Quản lý các tài sản thế chấp NFT của bạn",
+    "mint": "Tạo Tài sản Mới",
+    "myCollaterals": "Tài sản của Tôi",
+    "assetName": "Tên Tài sản",
+    "assetType": "Loại Tài sản",
+    "estimatedValue": "Giá trị Ước tính (USDC)",
+    "description": "Mô tả",
+    "uploadImage": "Tải Ảnh lên",
+    "minting": "Đang tạo NFT...",
+    "success": "Tài sản thế chấp được tạo thành công!",
+    "error": "Tạo thất bại",
+    "types": {
+      "equipment": "Máy móc thiết bị",
+      "inventory": "Hàng tồn kho",
+      "realEstate": "Bất động sản",
+      "vehicle": "Phương tiện",
+      "other": "Khác"
+    },
+    "placeholder": {
+      "assetName": "vd: Tòa nhà Văn phòng",
+      "value": "Nhập giá trị USD",
+      "description": "Mô tả tài sản..."
+    },
+    "nftDetails": {
+      "tokenId": "Mã Token",
+      "contract": "Hợp đồng",
+      "value": "Giá trị",
+      "status": "Trạng thái",
+      "viewOnExplorer": "Xem trên Explorer"
+    }
+  },
+  "invoice": {
+    "title": "Quản lý Hóa đơn",
+    "description": "Tải lên và quản lý hóa đơn của bạn",
+    "upload": "Tải Hóa đơn",
+    "myInvoices": "Hóa đơn của Tôi",
+    "invoiceNumber": "Số Hóa đơn",
+    "amount": "Số tiền",
+    "dueDate": "Ngày Đến hạn",
+    "status": "Trạng thái",
+    "uploading": "Đang tải lên...",
+    "success": "Hóa đơn được tải lên thành công!",
+    "statuses": {
+      "pending": "Đang chờ",
+      "verified": "Đã xác minh",
+      "paid": "Đã thanh toán",
+      "overdue": "Quá hạn"
+    }
+  },
+  "stats": {
+    "totalLoans": "Tổng Khoản vay",
+    "activeLoans": "Khoản vay Đang hoạt động",
+    "totalBorrowed": "Tổng Tiền đã vay",
+    "totalCollateral": "Tổng Giá trị Tài sản",
+    "avgCreditScore": "Điểm Tín dụng TB",
+    "defaultRate": "Tỷ lệ Vỡ nợ"
+  },
+  "benford": {
+    "title": "Phân tích Định luật Benford",
+    "description": "Phát hiện gian lận thống kê trên dữ liệu doanh thu",
+    "digitDistribution": "Phân bố Chữ số Đầu",
+    "expected": "Dự kiến (Benford)",
+    "actual": "Dữ liệu Thực tế",
+    "deviation": "Độ lệch",
+    "pass": "Dữ liệu tuân theo Định luật Benford",
+    "fail": "Phát hiện bất thường tiềm ẩn"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "close": "Đóng",
+    "save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "submit": "Gửi",
+    "retry": "Thử lại",
+    "viewDetails": "Xem Chi tiết",
+    "noData": "Không có dữ liệu",
+    "comingSoon": "Sắp ra mắt"
+  },
+  "errors": {
+    "walletNotConnected": "Vui lòng kết nối ví trước",
+    "wrongNetwork": "Vui lòng chuyển sang mạng Sepolia",
+    "insufficientBalance": "Số dư không đủ",
+    "transactionFailed": "Giao dịch thất bại",
+    "invalidInput": "Đầu vào không hợp lệ",
+    "networkError": "Lỗi mạng. Vui lòng thử lại.",
+    "unknownError": "Đã xảy ra lỗi không xác định"
+  }
+}

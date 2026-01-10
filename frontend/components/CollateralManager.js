@@ -7,32 +7,34 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useWeb3 } from '../context/Web3Context';
 import { calculateFileHash, uploadToIPFS, getIPFSGatewayURL, verifyFileIntegrity } from '../utils/ipfsUpload';
 import { createCollateral, useCollateralHistory } from '../hooks/useCollateralHistory';
 import { CONTRACTS } from '../config/constants';
 
-// Asset types matching smart contract enum
-const ASSET_TYPES = [
-  { value: 0, label: 'Máy móc thiết bị', icon: '⚙️', color: 'from-blue-500 to-cyan-500' },
-  { value: 1, label: 'Hàng tồn kho', icon: '📦', color: 'from-purple-500 to-pink-500' },
-  { value: 2, label: 'Bất động sản', icon: '🏢', color: 'from-green-500 to-emerald-500' },
-  { value: 3, label: 'Phương tiện', icon: '🚗', color: 'from-yellow-500 to-orange-500' },
-  { value: 4, label: 'Hóa đơn', icon: '📄', color: 'from-indigo-500 to-blue-500' },
-  { value: 5, label: 'Khoản phải thu', icon: '💰', color: 'from-cyan-500 to-teal-500' },
-  { value: 6, label: 'Khác', icon: '📋', color: 'from-gray-500 to-slate-500' }
-];
-
-// Workflow steps
-const STEPS = [
-  { id: 1, label: 'Chọn dữ liệu', icon: '📁', key: 'upload' },
-  { id: 2, label: 'Tạo Hash', icon: '🔐', key: 'hash' },
-  { id: 3, label: 'IPFS Upload', icon: '☁️', key: 'ipfs' },
-  { id: 4, label: 'On-Chain', icon: '⚡', key: 'mint' }
-];
-
 export default function CollateralManager() {
+  const { t } = useTranslation();
   const { account, mintCollateral, collateralNFT } = useWeb3();
+  
+  // Asset types with translations
+  const ASSET_TYPES = [
+    { value: 0, label: t('collateral.types.equipment') || 'Equipment', icon: '⚙️', color: 'from-blue-500 to-cyan-500' },
+    { value: 1, label: t('collateral.types.inventory') || 'Inventory', icon: '📦', color: 'from-purple-500 to-pink-500' },
+    { value: 2, label: t('collateral.types.realEstate') || 'Real Estate', icon: '🏢', color: 'from-green-500 to-emerald-500' },
+    { value: 3, label: t('collateral.types.vehicle') || 'Vehicle', icon: '🚗', color: 'from-yellow-500 to-orange-500' },
+    { value: 4, label: 'Invoice', icon: '📄', color: 'from-indigo-500 to-blue-500' },
+    { value: 5, label: 'Receivables', icon: '💰', color: 'from-cyan-500 to-teal-500' },
+    { value: 6, label: t('collateral.types.other') || 'Other', icon: '📋', color: 'from-gray-500 to-slate-500' }
+  ];
+
+  // Workflow steps
+  const STEPS = [
+    { id: 1, label: 'Chọn dữ liệu', icon: '📁', key: 'upload' },
+    { id: 2, label: 'Tạo Hash', icon: '🔐', key: 'hash' },
+    { id: 3, label: 'IPFS Upload', icon: '☁️', key: 'ipfs' },
+    { id: 4, label: 'On-Chain', icon: '⚡', key: 'mint' }
+  ];
   
   // Form state
   const [assetName, setAssetName] = useState('');

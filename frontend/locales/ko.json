@@ -1,0 +1,146 @@
+{
+  "app": {
+    "title": "FESEE - 중소기업 DeFi 대출 플랫폼",
+    "subtitle": "NFT 담보 및 ZK 사기 탐지를 통한 탈중앙화 대출"
+  },
+  "nav": {
+    "overview": "개요",
+    "creditCheck": "신용 확인",
+    "borrowLoan": "대출",
+    "collateral": "담보 관리",
+    "invoice": "청구서 관리"
+  },
+  "wallet": {
+    "connect": "지갑 연결",
+    "disconnect": "연결 해제",
+    "connected": "연결됨",
+    "switchNetwork": "Sepolia로 전환",
+    "wrongNetwork": "잘못된 네트워크"
+  },
+  "creditCheck": {
+    "title": "ZK 신용 검증",
+    "description": "수익 데이터에 대한 영지식 증명 생성",
+    "revenue": "수익 (USDC)",
+    "threshold": "Benford 임계값 (%)",
+    "generateProof": "증명 생성",
+    "submitOnChain": "온체인 제출",
+    "generating": "증명 생성 중...",
+    "submitting": "제출 중...",
+    "success": "증명 검증 성공!",
+    "error": "검증 실패",
+    "placeholder": {
+      "revenue": "총 수익 입력",
+      "threshold": "임계값 입력 (0-100)"
+    }
+  },
+  "borrow": {
+    "title": "USDC 대출",
+    "description": "검증된 신용 점수를 기반으로 대출",
+    "amount": "대출 금액 (USDC)",
+    "submitBorrow": "대출 요청 제출",
+    "borrowing": "처리 중...",
+    "success": "대출 지급 성공!",
+    "error": "대출 실패",
+    "creditScore": "신용 점수",
+    "available": "대출 가능 금액",
+    "placeholder": {
+      "amount": "대출 금액 입력"
+    }
+  },
+  "collateral": {
+    "title": "담보 NFT 관리",
+    "description": "NFT 담보 관리",
+    "mint": "새 담보 생성",
+    "myCollaterals": "내 담보",
+    "assetName": "자산 이름",
+    "assetType": "자산 유형",
+    "estimatedValue": "예상 가치 (USDC)",
+    "description": "설명",
+    "uploadImage": "이미지 업로드",
+    "minting": "NFT 생성 중...",
+    "success": "담보 생성 성공!",
+    "error": "생성 실패",
+    "types": {
+      "equipment": "기계 장비",
+      "inventory": "재고",
+      "realEstate": "부동산",
+      "vehicle": "차량",
+      "other": "기타"
+    },
+    "placeholder": {
+      "assetName": "예: 사무실 건물",
+      "value": "USD 가치 입력",
+      "description": "자산 설명..."
+    },
+    "nftDetails": {
+      "tokenId": "토큰 ID",
+      "contract": "계약",
+      "value": "가치",
+      "status": "상태",
+      "viewOnExplorer": "Explorer에서 보기"
+    }
+  },
+  "invoice": {
+    "title": "청구서 관리",
+    "description": "청구서 업로드 및 관리",
+    "upload": "청구서 업로드",
+    "myInvoices": "내 청구서",
+    "invoiceNumber": "청구서 번호",
+    "amount": "금액",
+    "dueDate": "만기일",
+    "status": "상태",
+    "uploading": "업로드 중...",
+    "success": "청구서 업로드 성공!",
+    "statuses": {
+      "pending": "대기 중",
+      "verified": "검증됨",
+      "paid": "지불됨",
+      "overdue": "연체"
+    }
+  },
+  "stats": {
+    "totalLoans": "총 대출",
+    "activeLoans": "활성 대출",
+    "totalBorrowed": "총 대출액",
+    "totalCollateral": "총 담보 가치",
+    "avgCreditScore": "평균 신용 점수",
+    "defaultRate": "부도율"
+  },
+  "benford": {
+    "title": "Benford의 법칙 분석",
+    "description": "수익 데이터의 통계적 사기 탐지",
+    "digitDistribution": "첫 자릿수 분포",
+    "expected": "예상 (Benford)",
+    "actual": "실제 데이터",
+    "deviation": "편차",
+    "pass": "데이터가 Benford의 법칙을 따름",
+    "fail": "잠재적 이상 징후 감지"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "cancel": "취소",
+    "confirm": "확인",
+    "close": "닫기",
+    "save": "저장",
+    "edit": "편집",
+    "delete": "삭제",
+    "back": "뒤로",
+    "next": "다음",
+    "submit": "제출",
+    "retry": "다시 시도",
+    "viewDetails": "세부 정보 보기",
+    "noData": "데이터 없음",
+    "comingSoon": "곧 출시"
+  },
+  "errors": {
+    "walletNotConnected": "먼저 지갑을 연결하세요",
+    "wrongNetwork": "Sepolia 네트워크로 전환하세요",
+    "insufficientBalance": "잔액 부족",
+    "transactionFailed": "거래 실패",
+    "invalidInput": "잘못된 입력",
+    "networkError": "네트워크 오류. 다시 시도하세요.",
+    "unknownError": "알 수 없는 오류가 발생했습니다"
+  }
+}

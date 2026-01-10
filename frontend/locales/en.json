@@ -1,0 +1,146 @@
+{
+  "app": {
+    "title": "FESEE - SME DeFi Lending Platform",
+    "subtitle": "Decentralized Lending with NFT Collateral & ZK Fraud Detection"
+  },
+  "nav": {
+    "overview": "Overview",
+    "creditCheck": "Credit Check",
+    "borrowLoan": "Borrow Loan",
+    "collateral": "Collateral Management",
+    "invoice": "Invoice Management"
+  },
+  "wallet": {
+    "connect": "Connect Wallet",
+    "disconnect": "Disconnect",
+    "connected": "Connected",
+    "switchNetwork": "Switch to Sepolia",
+    "wrongNetwork": "Wrong Network"
+  },
+  "creditCheck": {
+    "title": "ZK Credit Verification",
+    "description": "Generate zero-knowledge proof for your revenue data",
+    "revenue": "Revenue (USDC)",
+    "threshold": "Benford Threshold (%)",
+    "generateProof": "Generate Proof",
+    "submitOnChain": "Submit On-Chain",
+    "generating": "Generating Proof...",
+    "submitting": "Submitting...",
+    "success": "Proof verified successfully!",
+    "error": "Verification failed",
+    "placeholder": {
+      "revenue": "Enter total revenue",
+      "threshold": "Enter threshold (0-100)"
+    }
+  },
+  "borrow": {
+    "title": "Borrow USDC",
+    "description": "Borrow against your verified credit score",
+    "amount": "Borrow Amount (USDC)",
+    "submitBorrow": "Submit Borrow Request",
+    "borrowing": "Processing...",
+    "success": "Loan disbursed successfully!",
+    "error": "Borrow failed",
+    "creditScore": "Your Credit Score",
+    "available": "Available to Borrow",
+    "placeholder": {
+      "amount": "Enter amount to borrow"
+    }
+  },
+  "collateral": {
+    "title": "Collateral NFT Management",
+    "description": "Manage your NFT collaterals",
+    "mint": "Mint New Collateral",
+    "myCollaterals": "My Collaterals",
+    "assetName": "Asset Name",
+    "assetType": "Asset Type",
+    "estimatedValue": "Estimated Value (USDC)",
+    "description": "Description",
+    "uploadImage": "Upload Image",
+    "minting": "Minting NFT...",
+    "success": "Collateral minted successfully!",
+    "error": "Minting failed",
+    "types": {
+      "equipment": "Equipment",
+      "inventory": "Inventory",
+      "realEstate": "Real Estate",
+      "vehicle": "Vehicle",
+      "other": "Other"
+    },
+    "placeholder": {
+      "assetName": "e.g., Office Building",
+      "value": "Enter USD value",
+      "description": "Describe the asset..."
+    },
+    "nftDetails": {
+      "tokenId": "Token ID",
+      "contract": "Contract",
+      "value": "Value",
+      "status": "Status",
+      "viewOnExplorer": "View on Explorer"
+    }
+  },
+  "invoice": {
+    "title": "Invoice Management",
+    "description": "Upload and manage your invoices",
+    "upload": "Upload Invoice",
+    "myInvoices": "My Invoices",
+    "invoiceNumber": "Invoice Number",
+    "amount": "Amount",
+    "dueDate": "Due Date",
+    "status": "Status",
+    "uploading": "Uploading...",
+    "success": "Invoice uploaded successfully!",
+    "statuses": {
+      "pending": "Pending",
+      "verified": "Verified",
+      "paid": "Paid",
+      "overdue": "Overdue"
+    }
+  },
+  "stats": {
+    "totalLoans": "Total Loans",
+    "activeLoans": "Active Loans",
+    "totalBorrowed": "Total Borrowed",
+    "totalCollateral": "Total Collateral Value",
+    "avgCreditScore": "Avg Credit Score",
+    "defaultRate": "Default Rate"
+  },
+  "benford": {
+    "title": "Benford's Law Analysis",
+    "description": "Statistical fraud detection on revenue data",
+    "digitDistribution": "First Digit Distribution",
+    "expected": "Expected (Benford)",
+    "actual": "Actual Data",
+    "deviation": "Deviation",
+    "pass": "Data follows Benford's Law",
+    "fail": "Potential anomaly detected"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "retry": "Retry",
+    "viewDetails": "View Details",
+    "noData": "No data available",
+    "comingSoon": "Coming Soon"
+  },
+  "errors": {
+    "walletNotConnected": "Please connect your wallet first",
+    "wrongNetwork": "Please switch to Sepolia network",
+    "insufficientBalance": "Insufficient balance",
+    "transactionFailed": "Transaction failed",
+    "invalidInput": "Invalid input",
+    "networkError": "Network error. Please try again.",
+    "unknownError": "An unknown error occurred"
+  }
+}

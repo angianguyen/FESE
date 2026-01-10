@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useWeb3 } from '../context/Web3Context';
+import { useTranslation } from 'react-i18next';
 import LoanManager from '../components/LoanManager';
 import CollateralManager from '../components/CollateralManager';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import { 
   ShieldCheck, 
   Wallet, 
@@ -34,6 +36,7 @@ import {
 
 // --- SHARED COMPONENTS ---
 const Navbar = ({ onViewChange, currentView, web3 }) => {
+  const { t } = useTranslation();
   const { account, isConnected, isConnecting, connectWallet, disconnectWallet, switchAccount, isOnSepolia } = web3 || {};
   const [showWalletMenu, setShowWalletMenu] = useState(false);
   
@@ -71,6 +74,9 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
         </div>
 
         <div className="flex items-center gap-4">
+          {/* Language Switcher */}
+          <LanguageSwitcher />
+          
           {currentView === 'landing' && (
             <>
               <button 
