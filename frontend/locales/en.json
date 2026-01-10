@@ -4,11 +4,31 @@
     "subtitle": "Decentralized Lending with NFT Collateral & ZK Fraud Detection"
   },
   "nav": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "team": "Team",
+    "roadmap": "Roadmap",
+    "backHome": "Back to Home",
     "overview": "Overview",
     "creditCheck": "Credit Check",
     "borrowLoan": "Borrow Loan",
     "collateral": "Collateral Management",
     "invoice": "Invoice Management"
+  },
+  "landing": {
+    "liveOnSepolia": "Live on Sepolia Testnet",
+    "hero": {
+      "title": "Transparent Credit",
+      "titleHighlight": "Absolute Privacy",
+      "subtitle": "The first RWA Lending solution combining Zero-Knowledge Proofs and Benford's Law to verify business revenue without exposing sensitive data.",
+      "launchDemo": "Launch Demo App",
+      "learnMore": "Learn More"
+    },
+    "buttons": {
+      "manageLoans": "Manage Loans",
+      "collateralNFT": "Collateral NFT",
+      "launchApp": "Launch App"
+    }
   },
   "wallet": {
     "connect": "Connect Wallet",
@@ -133,6 +153,11 @@
     "viewDetails": "View Details",
     "noData": "No data available",
     "comingSoon": "Coming Soon"
+  },
+  "footer": {
+    "protocol": "StreamCredit Protocol",
+    "description": "Next-generation decentralized finance solution. Secured by Zero-Knowledge Proofs and running on Sepolia Testnet.",
+    "copyright": "© 2024 StreamCredit Labs."
   },
   "errors": {
     "walletNotConnected": "Please connect your wallet first",

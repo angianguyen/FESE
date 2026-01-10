@@ -4,11 +4,31 @@
     "subtitle": "Cho vay Phi tập trung với Tài sản thế chấp NFT & Phát hiện Gian lận ZK"
   },
   "nav": {
+    "features": "Tính năng",
+    "howItWorks": "Cách hoạt động",
+    "team": "Đội ngũ",
+    "roadmap": "Lộ trình",
+    "backHome": "Quay về trang chủ",
     "overview": "Tổng quan",
     "creditCheck": "Kiểm tra Tín dụng",
     "borrowLoan": "Vay Tiền",
     "collateral": "Quản lý Tài sản",
     "invoice": "Quản lý Hóa đơn"
+  },
+  "landing": {
+    "liveOnSepolia": "Live on Sepolia Testnet",
+    "hero": {
+      "title": "Tín dụng Minh bạch",
+      "titleHighlight": "Bảo mật Tuyệt đối",
+      "subtitle": "Giải pháp RWA Lending đầu tiên kết hợp Zero-Knowledge Proofs và Benford's Law để xác thực dòng tiền doanh nghiệp mà không lộ dữ liệu nhạy cảm.",
+      "launchDemo": "Mở Demo App",
+      "learnMore": "Tìm hiểu thêm"
+    },
+    "buttons": {
+      "manageLoans": "Manage Loans",
+      "collateralNFT": "Collateral NFT",
+      "launchApp": "Launch App"
+    }
   },
   "wallet": {
     "connect": "Kết nối Ví",
@@ -133,6 +153,11 @@
     "viewDetails": "Xem Chi tiết",
     "noData": "Không có dữ liệu",
     "comingSoon": "Sắp ra mắt"
+  },
+  "footer": {
+    "protocol": "StreamCredit Protocol",
+    "description": "Giải pháp tài chính phi tập trung thế hệ mới. Bảo mật bởi Zero-Knowledge Proofs và vận hành trên Sepolia Testnet.",
+    "copyright": "© 2024 StreamCredit Labs."
   },
   "errors": {
     "walletNotConnected": "Vui lòng kết nối ví trước",

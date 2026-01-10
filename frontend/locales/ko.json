@@ -4,11 +4,31 @@
     "subtitle": "NFT 담보 및 ZK 사기 탐지를 통한 탈중앙화 대출"
   },
   "nav": {
+    "features": "기능",
+    "howItWorks": "작동 방식",
+    "team": "팀",
+    "roadmap": "로드맵",
+    "backHome": "홈으로",
     "overview": "개요",
     "creditCheck": "신용 확인",
     "borrowLoan": "대출",
     "collateral": "담보 관리",
     "invoice": "청구서 관리"
+  },
+  "landing": {
+    "liveOnSepolia": "Sepolia 테스트넷에서 라이브",
+    "hero": {
+      "title": "투명한 신용",
+      "titleHighlight": "절대적 프라이버시",
+      "subtitle": "영지식 증명과 벤포드의 법칙을 결합한 최초의 RWA 대출 솔루션으로 민감한 데이터를 노출하지 않고 비즈니스 수익을 검증합니다.",
+      "launchDemo": "데모 앱 실행",
+      "learnMore": "자세히 알아보기"
+    },
+    "buttons": {
+      "manageLoans": "대출 관리",
+      "collateralNFT": "담보 NFT",
+      "launchApp": "앱 실행"
+    }
   },
   "wallet": {
     "connect": "지갑 연결",
@@ -133,6 +153,11 @@
     "viewDetails": "세부 정보 보기",
     "noData": "데이터 없음",
     "comingSoon": "곧 출시"
+  },
+  "footer": {
+    "protocol": "StreamCredit Protocol",
+    "description": "차세대 탈중앙화 금융 솔루션. 영지식 증명으로 보호되며 Sepolia 테스트넷에서 실행됩니다.",
+    "copyright": "© 2024 StreamCredit Labs."
   },
   "errors": {
     "walletNotConnected": "먼저 지갑을 연결하세요",

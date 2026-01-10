@@ -63,14 +63,14 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
         <div className="hidden md:flex items-center gap-8">
           {currentView === 'landing' ? (
             <>
-              <a href="#features" className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">Tính năng</a>
-              <a href="#how-it-works" className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">Cách hoạt động</a>
-              <button onClick={() => onViewChange('team')} className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">Đội ngũ</button>
-              <a href="#roadmap" className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">Lộ trình</a>
+              <a href="#features" className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">{t('nav.features')}</a>
+              <a href="#how-it-works" className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">{t('nav.howItWorks')}</a>
+              <button onClick={() => onViewChange('team')} className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">{t('nav.team')}</button>
+              <a href="#roadmap" className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition">{t('nav.roadmap')}</a>
             </>
           ) : (
             <button onClick={() => onViewChange('landing')} className="text-sm font-medium text-slate-400 hover:text-cyan-400 transition flex items-center gap-2">
-              <Home size={16} /> Quay về trang chủ
+              <Home size={16} /> {t('nav.backHome')}
             </button>
           )}
         </div>
@@ -85,19 +85,19 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
                 onClick={() => onViewChange('manage')}
                 className="hidden md:flex px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-sm font-medium transition items-center gap-2 shadow-lg shadow-cyan-500/20"
               >
-                <TrendingUp size={14} /> Manage Loans
+                <TrendingUp size={14} /> {t('landing.buttons.manageLoans')}
               </button>
               <button 
                 onClick={() => onViewChange('collateral')}
                 className="hidden md:flex px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-sm font-medium transition items-center gap-2 shadow-lg shadow-purple-500/20"
               >
-                <Layers size={14} /> Collateral NFT
+                <Layers size={14} /> {t('landing.buttons.collateralNFT')}
               </button>
               <button 
                 onClick={() => onViewChange('console')}
                 className="hidden md:flex px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium transition items-center gap-2"
               >
-                <Terminal size={14} /> Launch App
+                <Terminal size={14} /> {t('landing.buttons.launchApp')}
               </button>
             </>
           )}
@@ -170,19 +170,22 @@ const Navbar = ({ onViewChange, currentView, web3 }) => {
   );
 };
 
-const Footer = () => (
+const Footer = () => {
+  const { t } = useTranslation();
+  return (
   <footer className="border-t border-white/5 py-12 text-center bg-slate-950/50">
     <div className="flex items-center justify-center gap-2 mb-4 text-cyan-400">
       <ShieldCheck size={20} />
-      <span className="text-lg font-bold">StreamCredit Protocol</span>
+      <span className="text-lg font-bold">{t('footer.protocol')}</span>
     </div>
     <p className="text-slate-500 text-sm max-w-md mx-auto">
-      Giải pháp tài chính phi tập trung thế hệ mới. Bảo mật bởi Zero-Knowledge Proofs và vận hành trên Sepolia Testnet.
+      {t('footer.description')}
       <br/><br/>
-      © 2024 StreamCredit Labs.
+      {t('footer.copyright')}
     </p>
   </footer>
-);
+  );
+};
 
 // --- PAGE 1: LANDING PAGE VIEW ---
 const FeatureCard = ({ icon: Icon, title, desc }) => (
@@ -195,8 +198,12 @@ const FeatureCard = ({ icon: Icon, title, desc }) => (
   </div>
 );
 
-const LandingView = ({ onNavigate }) => (
-  <div className="fade-in">
+const LandingView = ({ onNavigate }) => {
+  const { t } = useTranslation();
+  const language = useLanguageChange();
+  
+  return (
+  <div className="fade-in" key={language}>
     {/* HERO SECTION */}
     <header className="relative pt-20 pb-32 px-6 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
@@ -210,16 +217,15 @@ const LandingView = ({ onNavigate }) => (
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </span>
-          Live on Sepolia Testnet
+          {t('landing.liveOnSepolia')}
         </div>
         
         <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight leading-tight">
-          Tín dụng <span className="text-gradient">Minh bạch</span> <br className="hidden md:block"/>
-          Bảo mật <span className="text-slate-100">Tuyệt đối</span>
+          {t('landing.hero.title')} <span className="text-gradient">{t('landing.hero.titleHighlight')}</span>
         </h1>
         
         <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Giải pháp RWA Lending đầu tiên kết hợp <strong>Zero-Knowledge Proofs</strong> và <strong>Benford's Law</strong> để xác thực dòng tiền doanh nghiệp mà không lộ dữ liệu nhạy cảm.
+          {t('landing.hero.subtitle')}
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
@@ -228,10 +234,10 @@ const LandingView = ({ onNavigate }) => (
             className="btn-action px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/20 flex items-center gap-2 text-lg"
           >
             <Terminal size={20} />
-            Mở Demo App
+            {t('landing.hero.launchDemo')}
           </button>
           <a href="#how-it-works" className="px-8 py-4 rounded-xl border border-slate-700 hover:bg-slate-800 text-slate-300 font-medium transition-all flex items-center gap-2">
-            Tìm hiểu thêm <ChevronRight size={16} />
+            {t('landing.hero.learnMore')} <ChevronRight size={16} />
           </a>
         </div>
       </div>
@@ -375,7 +381,8 @@ const LandingView = ({ onNavigate }) => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 // --- PAGE 2: TEAM VIEW ---
 const TeamView = () => {
